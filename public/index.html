@@ -6,5 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
   </head>
-  <body></body>
+  <body>
+    <button onClick="getAuth()">Get Auth</button>
+    <script>
+      async function getAuth() {
+        const token = await fetch('/.netlify/functions/token').then((token) =>
+          token.json()
+        );
+
+        const getEmailAuth = await fetch('/.netlify/functions/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`,
+          },
+          body: JSON.stringify({
+            name: 'Sako',
+            email: 'sako@gmail.com',
+            message: 'new message wow',
+          }),
+        }).then((authRes) => authRes.json());
+        console.log('getEmailAuth', getEmailAuth);
+      }
+    </script>
+  </body>
 </html>
