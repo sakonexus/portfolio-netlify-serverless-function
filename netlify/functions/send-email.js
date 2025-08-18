@@ -7,14 +7,9 @@ const EMAILJS_PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY;
 
 const DEV_ORIGIN_URL = process.env.DEV_ORIGIN_URL;
 const PROD_ORIGIN_URL = process.env.PROD_ORIGIN_URL;
+const NETLIFY_ORIGIN_URL = process.env.NETLIFY_ORIGIN_URL;
 
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-};
-
-const ALLOWED_ORIGINS = [DEV_ORIGIN_URL, PROD_ORIGIN_URL];
+const ALLOWED_ORIGINS = [DEV_ORIGIN_URL, PROD_ORIGIN_URL, NETLIFY_ORIGIN_URL];
 
 const getCorsHeaders = (origin) => {
   if (ALLOWED_ORIGINS.includes(origin)) {
